@@ -7,7 +7,8 @@ from django.template.defaulttags import register
 
 from Process.create_dashboards import Processing
 
-conn = sqlite3.connect(r"C:\Random Projects\LearningDjango\mysite\DB\target_db.db", check_same_thread=False)
+db_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'DB', 'target_db.db'))
+conn = sqlite3.connect(db_path, check_same_thread=False)
 curr = conn.cursor()
 
 abs_path_static = os.path.dirname(os.path.abspath(__file__)) + "\\static\\"
