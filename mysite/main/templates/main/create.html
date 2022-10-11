@@ -1,0 +1,13 @@
+{% extends "main/base.html" %}
+
+{% block paragraphs %}
+<p>Create Template Form</p>
+{% endblock %}
+
+{% block content %}
+<form method="post" class="content">
+    {% csrf_token %}
+    {{form}}
+    <button type="submit" name="Save">Create New</button>
+</form>
+{% endblock %}

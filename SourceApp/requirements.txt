@@ -1,0 +1,8 @@
+flask
+pandas
+sklearn
+matplotlib
+seaborn
+boto3
+flask_sqlalchemy
+psycopg2

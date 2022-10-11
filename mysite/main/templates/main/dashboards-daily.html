@@ -1,0 +1,263 @@
+{% extends "main/dashboards.html" %}
+
+{% block content %}
+
+{% load static %}
+<div class="container">
+    <div class="row justify-content-center mt-3">
+
+        <div class="col">
+            {% with amount_of_users_week=plots|get_value:"numbers"|get_value:"amount_of_users_week" %}
+
+            <p style="padding-top:60px; font-size:80px;" class="col d-flex justify-content-center"> {{amount_of_users_week}} </p>
+            <p class="col d-flex justify-content-center text-center"> Amount of Users </p>
+
+            {% endwith %}
+        </div>
+
+        <div class="col">
+            {% with amount_of_new_users_week=plots|get_value:"numbers"|get_value:"amount_of_new_users_week" %}
+
+            <p style="padding-top:60px; font-size:80px;" class="col d-flex justify-content-center"> {{amount_of_new_users_week}} </p>
+            <p class="col d-flex justify-content-center text-center"> Amount of new Users </p>
+
+            {% endwith %}
+        </div>
+
+        <div class="col">
+            {% with repeat_visitors_ratio=plots|get_value:"numbers"|get_value:"repeat_visitors_ratio" %}
+
+            <p style="padding-top:60px; font-size:80px;" class="col d-flex justify-content-center"> {{repeat_visitors_ratio}}% </p>
+            <p style="margin-bottom: 120px;" class="col d-flex justify-content-center text-center"> Repeat visitors Ratio </p>
+
+            {% endwith %}
+        </div>
+
+    </div>
+
+    <div class="row justify-content-center">
+
+        <div class="col">
+            {% with path=plots|get_value:"actionsPerVisit"|get_value:"path" %}
+            {% with title=plots|get_value:"actionsPerVisit"|get_value:"name" %}
+
+            <img src="{% static path %}" alt="Chart" class="img-thumbnail" height="600" width="600">
+            <p style="margin-bottom: 40px" class="col d-flex justify-content-center text-center mt-3 me-4 ml-10"> {{title}} </p>
+
+            {% endwith %}
+            {% endwith %}
+        </div>
+
+        <div class="col">
+            {% with value=plots|get_value:"actionsPerVisit"|get_value:"value" %}
+
+            <p class="col d-flex justify-content-center text-center value-for-plot"> {{value}} </p>
+            <p class="col d-flex justify-content-center text-center"> Overall Amount of Actions/day </p>
+
+            {% endwith %}
+        </div>
+
+    </div>
+
+    <div class="row justify-content-center">
+
+        <div class="col">
+            {% with path=plots|get_value:"countSessions"|get_value:"path" %}
+            {% with title=plots|get_value:"countSessions"|get_value:"name" %}
+
+            <img src="{% static path %}" alt="Chart" class="img-thumbnail" height="600" width="600">
+            <p style="margin-bottom: 40px" class="col d-flex justify-content-center text-center mt-3 me-4 ml-10"> {{title}} </p>
+
+            {% endwith %}
+            {% endwith %}
+        </div>
+
+        <div class="col">
+            {% with value=plots|get_value:"countSessions"|get_value:"value" %}
+
+            <p class="col d-flex justify-content-center text-center value-for-plot"> {{value}} </p>
+            <p class="col d-flex justify-content-center text-center"> Overall amount of sessions/day </p>
+
+            {% endwith %}
+        </div>
+
+    </div>
+
+    <div class="row justify-content-center">
+
+        <div class="col">
+            {% with path=plots|get_value:"actionsPerAverage"|get_value:"path" %}
+            {% with title=plots|get_value:"actionsPerAverage"|get_value:"name" %}
+
+            <img src="{% static path %}" alt="Chart" class="img-thumbnail" height="600" width="600">
+            <p style="margin-bottom: 40px" class="col d-flex justify-content-center text-center mt-3 me-4 ml-10"> {{title}} </p>
+
+            {% endwith %}
+            {% endwith %}
+        </div>
+
+        <div class="col">
+            {% with value=plots|get_value:"actionsPerAverage"|get_value:"value" %}
+
+            <p class="col d-flex justify-content-center text-center value-for-plot"> {{value}} </p>
+            <p class="col d-flex justify-content-center text-center"> Average Amount of Actions per Session/Day </p>
+
+            {% endwith %}
+        </div>
+
+    </div>
+
+    <div class="row justify-content-center">
+
+        <div class="col">
+            {% with path=plots|get_value:"averageUserSession"|get_value:"path" %}
+            {% with title=plots|get_value:"averageUserSession"|get_value:"name" %}
+
+            <img src="{% static path %}" alt="Chart" class="img-thumbnail" height="600" width="600">
+            <p style="margin-bottom: 40px" class="col d-flex justify-content-center text-center mt-3 me-4 ml-10"> {{title}} </p>
+
+            {% endwith %}
+            {% endwith %}
+        </div>
+
+        <div class="col">
+            {% with value=plots|get_value:"averageUserSession"|get_value:"value" %}
+
+            <p class="col d-flex justify-content-center text-center value-for-plot"> {{value}} </p>
+            <p class="col d-flex justify-content-center text-center"> Average time user spent on the Website </p>
+
+            {% endwith %}
+        </div>
+
+    </div>
+
+    <div class="row justify-content-center">
+
+        <div class="col">
+            {% with path=plots|get_value:"bounceRate"|get_value:"path" %}
+            {% with title=plots|get_value:"bounceRate"|get_value:"name" %}
+
+            <img src="{% static path %}" alt="Chart" class="img-thumbnail" height="600" width="600">
+            <p style="margin-bottom: 40px" class="col d-flex justify-content-center text-center mt-3 me-4 ml-10"> {{title}} </p>
+
+            {% endwith %}
+            {% endwith %}
+        </div>
+
+        <div class="col">
+            {% with value=plots|get_value:"bounceRate"|get_value:"value" %}
+
+            <p class="col d-flex justify-content-center text-center value-for-plot"> {{value}}% </p>
+            <p class="col d-flex justify-content-center text-center"> Average Bounce Rate/Day </p>
+
+            {% endwith %}
+        </div>
+
+    </div>
+
+    <div class="row justify-content-center">
+
+        <div class="col">
+            {% with path=plots|get_value:"conversionRate"|get_value:"path" %}
+            {% with title=plots|get_value:"conversionRate"|get_value:"name" %}
+
+            <img src="{% static path %}" alt="Chart" class="img-thumbnail" height="600" width="600">
+            <p style="margin-bottom: 40px" class="col d-flex justify-content-center text-center mt-3 me-4 ml-10"> {{title}} </p>
+
+            {% endwith %}
+            {% endwith %}
+        </div>
+
+        <div class="col">
+            {% with value=plots|get_value:"conversionRate"|get_value:"value" %}
+
+            <p class="col d-flex justify-content-center text-center value-for-plot"> {{value}}% </p>
+            <p class="col d-flex justify-content-center text-center"> Average Conversion Rate/Day </p>
+
+            {% endwith %}
+        </div>
+
+    </div>
+
+    <div class="row justify-content-center">
+
+        <div class="col">
+            {% with path=plots|get_value:"timeToMakeAPostRequest"|get_value:"path" %}
+            {% with title=plots|get_value:"timeToMakeAPostRequest"|get_value:"name" %}
+
+            <img src="{% static path %}" alt="Chart" class="img-thumbnail" height="600" width="600">
+            <p style="margin-bottom: 40px" class="col d-flex justify-content-center text-center mt-3 me-4 ml-10"> {{title}} </p>
+
+            {% endwith %}
+            {% endwith %}
+        </div>
+
+        <div class="col">
+            {% with value=plots|get_value:"timeToMakeAPostRequest"|get_value:"value" %}
+
+            <p class="col d-flex justify-content-center text-center value-for-plot"> {{value}} </p>
+            <p class="col d-flex justify-content-center text-center"> Average amount of time to make a conversion/Day </p>
+
+            {% endwith %}
+        </div>
+
+    </div>
+
+        <div class="row justify-content-center">
+
+        <div class="col">
+            {% with path=plots|get_value:"maleOrFemale"|get_value:"path" %}
+            {% with title=plots|get_value:"maleOrFemale"|get_value:"name" %}
+
+            <img src="{% static path %}" alt="Chart" class="img-thumbnail" height="600" width="600">
+            <p style="margin-bottom: 40px" class="col d-flex justify-content-center text-center mt-3 me-4 ml-5"> {{title}} </p>
+
+            {% endwith %}
+            {% endwith %}
+        </div>
+
+        <div class="col">
+            {% with male=plots|get_value:"maleOrFemale"|get_value:"male" %}
+            {% with female=plots|get_value:"maleOrFemale"|get_value:"female" %}
+
+            <p style="padding-top:30px; font-size:80px" class="col d-flex justify-content-center"> {{male}}</p>
+            <p class="col d-flex justify-content-center text-center"> male</p>
+            <p style="padding-top:50px; font-size:80px" class="col d-flex justify-content-center"> {{female}}</p>
+            <p class="col d-flex justify-content-center text-center"> female</p>
+
+            {% endwith %}
+            {% endwith %}
+        </div>
+
+    </div>
+
+    <div class="row justify-content-center">
+
+        <div class="col">
+            {% with path=plots|get_value:"theMostPopularRoute"|get_value:"path" %}
+            {% with title=plots|get_value:"theMostPopularRoute"|get_value:"name" %}
+
+            <img src="{% static path %}" alt="Chart" class="img-thumbnail" height="600" width="600">
+            <p class="col d-flex justify-content-center text-center mt-3 me-4 ml-5"> {{title}} </p>
+
+            {% endwith %}
+            {% endwith %}
+        </div>
+
+        <div class="col">
+            {% with celebrity=plots|get_value:"theMostPopularRoute"|get_value:"celebrity" %}
+            {% with houseprice=plots|get_value:"theMostPopularRoute"|get_value:"house-price" %}
+
+            <p style="padding-top:30px; font-size:80px" class="col d-flex justify-content-center"> {{celebrity}}</p>
+            <p class="col d-flex justify-content-center text-center"> /celebrity</p>
+            <p style="padding-top:50px; font-size:80px" class="col d-flex justify-content-center"> {{houseprice}}</p>
+            <p class="col d-flex justify-content-center text-center"> /house-price</p>
+
+            {% endwith %}
+            {% endwith %}
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

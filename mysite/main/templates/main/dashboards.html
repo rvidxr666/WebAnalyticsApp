@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,300&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .navbar {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: .5rem;
+            padding-bottom: .5rem;
+            z-index: 2;
+        }
+
+        <!--.sidebar {-->
+        <!--    height: 100%;-->
+        <!--    width: 170px;-->
+        <!--    position: fixed;-->
+        <!--    left: 0;-->
+        <!--    top: 0;-->
+        <!--    bottom: 0;-->
+        <!--    padding-top: 40px;-->
+        <!--    background-color: Lavender;-->
+        <!--    z-index: 1;-->
+        <!--    margin-top:0px;-->
+        <!--}-->
+
+        .sidebar {
+            height: 100%;
+            width: 170px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+        <!--    padding-top: 40px;-->
+            padding-top: 20px;
+            background-color: #042331;
+            z-index: 1;
+            margin-top:0px;
+        }
+
+        .sidebar header {
+            font-size: 22px;
+            color: white;
+            padding-top: 5px;
+            text-align: center;
+            line-height: 50px;
+            background-color: #063146;
+            user-select: none;
+        }
+
+        .sidebar ul a {
+            display: block;
+            height: 100%;
+            user-select: none;
+            width: 100%
+            line-height: 65px;
+            text-decoration: none;
+            font-size: 20px;
+            color: white;
+            padding-top: 20px;
+            box-sizing: border-box;
+            transition: .4s;
+            padding-left: 10px;
+            padding-bottom: 16px;
+            border-right: 3px solid transparent;
+        }
+
+        .sidebar ul {
+           list-style-type: none;
+           padding: 0;
+        }
+
+        .sidebar ul .external {
+            border-bottom: 2px solid rgba(255,255,255,.1);
+        }
+
+        .sidebar ul li a {
+            position: relative;
+        }
+
+        .sidebar ul li a:hover {
+            color: cyan;
+            border-right-color: cyan;
+        }
+
+        .sidebar ul ul {
+            position: static;
+            display: none;
+        }
+
+        .sidebar ul ul li {
+            line-height: 20px;
+            border-bottom: none;
+        }
+
+        .sidebar ul ul li a{
+            font-size: 17px;
+            padding-bottom: 10px;
+            padding-left: 40px;
+        }
+
+        .sidebar ul li a span {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            font-size: 20px;
+            transform: translateY(-50%);
+        }
+
+        .sidebar ul li a:hover span {
+            transform: translateY(-50%) rotate(-180deg);
+        }
+
+        .dash-show.show{
+            display: block;
+        }
+
+        .pdf-show.show1{
+            display: block;
+        }
+
+
+        <!--.sidebar a {-->
+        <!--    padding: 8px;-->
+        <!--    font-size: 20px;-->
+        <!--    display: block;-->
+        <!--}-->
+
+        .plots {
+            margin-top: 56px;
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .numbers {
+            margin-top: 10px;
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .pdf {
+            margin-top: 10px;
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .body-text {
+            margin-left: 150px;
+            font-size: 18px;
+        }
+
+        .value-for-plot {
+            padding-top: 150px;
+            font-size: 80px;
+        }
+    </style>
+
+
+
+<body>
+    {% load static %}
+
+    <input type="checkbox" id="check">
+    <div class="sidebar">
+        <header>Menu</header>
+        <ul>
+            <li class="external">
+                <a class="dash-btn">Dashboard
+                    <span class="fas fa-caret-down first"></span>
+                </a>
+                <ul class="dash-show">
+                    <li><a href="http://localhost:8000/dashboards/daily">Daily</a></li>
+                    <li><a href="http://localhost:8000/dashboards/weekly">Weekly</a></li>
+                </ul>
+            </li>
+            <li class="external"><a href="http://localhost:8000/dashboards/">Numbers</a></li>
+            <li class="external">
+                <a class="pdf-btn">Export PDF
+                    <span class="fas fa-caret-down second"></span>
+                </a>
+                <ul class="pdf-show">
+                    <li><a href="http://localhost:8000/dashboards/">Daily</a></li>
+                    <li><a href="http://localhost:8000/dashboards/weekly">Weekly</a></li>
+                </ul>
+            </li>
+            <li class="external"><a class="return" href="http://localhost:8000/">Return</a></li>
+        </ul>
+    </div>
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center mt-3">
+
+            <div class="col">
+                {% with path=plots|get_value:"mostLoadedPeriodWeek"|get_value:"path" %}
+                {% with title=plots|get_value:"mostLoadedPeriodWeek"|get_value:"name" %}
+
+                <img src="{% static path %}" alt="Chart" class="img-thumbnail" height="600" width="600">
+                <p class="row justify-content-center mt-3 mb-5"> {{title}} </p>
+
+                {% endwith %}
+                {% endwith %}
+            </div>
+
+            <div class="col">
+                {% with path=plots|get_value:"mostLoadedTimePeriodToday"|get_value:"path" %}
+                {% with title=plots|get_value:"mostLoadedTimePeriodToday"|get_value:"name" %}
+
+                <img src="{% static path %}" alt="Chart" class="img-thumbnail" height="600" width="600">
+                <p class="row justify-content-center mt-3"> {{title}} </p>
+
+                {% endwith %}
+                {% endwith %}
+            </div>
+
+        </div>
+
+        <div class="row justify-content-center">
+
+            <div class="col">
+                {% with path=plots|get_value:"maleOrFemale"|get_value:"path" %}
+                {% with title=plots|get_value:"maleOrFemale"|get_value:"name" %}
+
+                <img src="{% static path %}" alt="Chart" class="img-thumbnail" height="600" width="600">
+                <p class="row justify-content-center mt-3 me-4"> {{title}} </p>
+
+                {% endwith %}
+                {% endwith %}
+            </div>
+
+            <div class="col">
+                {% with path=plots|get_value:"theMostPopularRoute"|get_value:"path" %}
+                {% with title=plots|get_value:"theMostPopularRoute"|get_value:"name" %}
+
+                <img src="{% static path %}" alt="Chart" class="img-thumbnail" height="600" width="600">
+                <p class="row justify-content-center mt-3 me-3"> {{title}} </p>
+
+                {% endwith %}
+                {% endwith %}
+            </div>
+
+
+        </div>
+    </div>
+
+
+{% endblock %}
+</body>
+
+<script>
+    $('.dash-btn').click(function(){
+        $('.dash-show').toggleClass("show")
+    });
+    $('.pdf-btn').click(function(){
+        $('.pdf-show').toggleClass("show1")
+    })
+
+</script>

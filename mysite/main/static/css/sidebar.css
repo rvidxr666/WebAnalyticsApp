@@ -1,0 +1,22 @@
+.sidebar {
+    height: 100%;
+    width: 200px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding-top: 40px;
+    background-color: black;
+    z-index: 3;
+    margin-top:56px
+}
+
+.sidebar a {
+    padding: 8px;
+    font-size: 20px;
+    display: block;
+}
+
+.body-text {
+    margin-left: 150px;
+    font-size: 18px;
+}
