@@ -2,7 +2,8 @@
 ## Description
 Project was made for the purpose of my Bachelor's thesis in Kozminski University. 
 The main idea of the project was to capture users' activity logs on the Source Website and calculate 
-the most important Web Analytics metrics and visualize them in real time on the Target Dashboard Application
+the most important Web Analytics metrics and visualize them in real time on the Target Dashboard Application during two tracking 
+periods (day/week)
 
 ## Architecture of the Application
 ![image](https://github.com/rvidxr666/WebAnalyticsApp/blob/master/images/architecture.png?raw=true)
@@ -23,4 +24,27 @@ dashboards and calculated metrics. You can access the application on **http://lo
 Web Application
 
 ## Data and Metrics calculated
+1. Example of the data that is being placed to the PostgreSQL DB whenever user makes a request on Source Webapp: 
+    > ```{user_name: "maksimum232@gmail.com", user_id:0,	name:"Maksim", surname:"Turtsevich", gender:"m", method:"GET", route:"/celebrity", status:"Success", time:"14:48:10", date:"2022-10-11"}```
+2. Metrics that are calculated and visualized on the Dashboard Application:
+    - **Amount of Users** - amount of unique users that visited website
+    - **Amount of new Users** - amount of unique users that accessed the **/register** route
+    - **Repeat visitors Ratio** - amount of unique users that accessed the **/login** > 1 time divided by overall amount 
+    of unique visitors that accessed the website per tracking periond
+    - **Overall Amount of Actions** - count overall amount of interactions with the Source Web Application
+    - **Overall amount of sessions** - counts the amount of unique sessions 
+    - **Average Amount of Actions per Session** - average amount of actions (clicks) that user performs during the session between
+    **/login** and **/logout** routes
+    - **Time user spent on the Website** - average session duration
+    - **Average Bounce Rate** - percentage of sessions that were shorter than 3 seconds
+    - **Average Conversion Rate** - percentage of sessions where user submitted a certain form (made a POST request). On 
+    the Source Web Application there are two forms that are activating ML models by using the input from user
+    - **Average amount of time to make a conversion** - average which user spends to submit a certain form and activate ML model 
+    (make a POST request)
+    - **Male/Female ratio** - ratio of male and female visitors
+    - **Page views ratio** - visualization of access distribution between routes on the Source Web Application
 
+## Final Result
+![demo](https://github.com/rvidxr666/WebAnalyticsApp/blob/master/images/demonstration.gif?raw=true)
+    
+    
